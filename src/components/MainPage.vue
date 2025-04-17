@@ -1,45 +1,36 @@
 <template>
-  <div class="flex h-full w-full items-center justify-center join">
-    <label class="input validator join-item">
-      <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"></path><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"></circle></g></svg>
-      <input 
-        v-model="inputVal" 
-        type="password" 
-        required 
-        placeholder="Password" 
-        minlength="6" 
-        maxlength="6" 
-        pattern="(?=.*\d)(?=.*[a-z]).{6,}" 
-        title="Must be 6 characters, including number, letter" 
-        @keyup.enter="validAndGo"
-      />
-    </label>
-    <p class="validator-hint hidden">
-      Must be 6 characters, including
-      <br/>At least one number
-      <br/>At least letter
-    </p>
-    <button class="btn btn-neutral join-item" @click="validAndGo()">GO</button>
+  <div class="flex flex-row h-full w-full">
+    <!-- 左侧菜单栏 -->
+    <ul class="menu bg-neutral h-full text-neutral-content" style="min-width: 130px;">
+      <li><a @click="routePage('MyOverview')">概览</a></li>
+      <li>
+        <details open>
+          <summary>Word相关</summary>
+          <ul>
+            <li><a @click="routePage('GptToFormatedDocx')">GPT生成的文本转换为Word</a></li>
+            <li><a @click="routePage('account')">xxx</a></li>
+            <li><a @click="routePage('customer')">xxx</a></li>
+          </ul>
+        </details>
+      </li>
+      <li>
+        <a @click="routePage('device')">待续</a>
+      </li>
+
+    </ul>
+    <!-- 右侧内容区域 -->
+    <div class="flex-1">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { myAlert } from '../stores/myStore';
-
 const router = useRouter();
-const alert = myAlert();
 
-const inputVal = ref('');
-
-const validAndGo = () => {
-  if(inputVal.value === '1qaz2w') {
-    localStorage.setItem('token', '1');
-    router.push({ path: '/MatchBook' });
-  } else {
-    alert.triggerAlert('口令错误！');
-  }
-}
+const routePage = (pagePath) => {
+  router.push({ path: pagePath });
+};
 
 </script>

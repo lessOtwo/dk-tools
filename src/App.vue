@@ -5,7 +5,7 @@
         <h1 class="text-xl font-bold">丁凯的小工具</h1>
       </aside>
       <nav class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
-        <a href="https://gitee.com/VinceHsu/daisy-ui-demo" target="_blank">
+        <a href="https://github.com/lessOtwo/dk-tools" target="_blank">
           <SvgIcons name="github" />
         </a>
         <label class="swap swap-rotate">
